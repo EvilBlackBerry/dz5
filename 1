@@ -1,1 +1,43 @@
+import Foundation
 
+protocol fullNameOfObject {
+    var fullName : String {get}
+}
+extension fullNameOfObject {
+    var release : Int {return self as! Int}
+}
+
+
+class Car: fullNameOfObject {
+    var brand: String
+    var model: String
+    var release: Int
+    var veight: Int
+    var maxspeed: Int
+
+    init(brand: String, model: String, release: Int, veight: Int, maxspeed: Int) {
+        self.brand = brand
+        self.model = model
+        self.release = release
+        self.veight = veight
+        self.maxspeed = maxspeed
+    }
+    
+    var fullName: String {
+        return (brand + " ") + model
+    }
+}
+
+let sportcar = Car(brand: "Mercedes-Benz", model: "GLC", release: 2020, veight: 1300, maxspeed: 230)
+print(sportcar.fullName)
+
+extension Car: CustomStringConvertible {
+    var description : String {
+        return "Brand \(fullName), release: \(release), his veight: \(veight), his maxspeed: \(maxspeed)"
+    }
+}
+
+print(sportcar.description)
+let truckcar = Car(brand: "Volvo", model: "FH16", release: 2018, veight: 9000, maxspeed: 200)
+print(truckcar.fullName)
+print(truckcar.description)
